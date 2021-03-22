@@ -1,9 +1,96 @@
 {%extends 'base.html'%}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block styles %}
+
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+
+{% endblock %}
+
 {% block content %}
 {{ block.super}}
 
+<img src="../static/img/marek-piwnicki-ViBwnZOLa60-unsplash.jpg" style="width: 100%; height: 550px; margin-top: -20px;" alt="">
+
 <div class="container">
+    <h1 style="text-align: center; font-family: 'Cormorant Unicase', serif;">MY PERSONAL GALLERY</h1>
 
+    <!-- <div class="col-md-3 col-sm-4 col-xs-12 single_portfolio_text"> -->
+
+    <!-- <img src="{{image.image.url}}" class="img-responsive" alt="Image"> -->
+    <!-- <a class="fancybox btn btn-primary" rel="gallery" href="{{image.image.url}}"><i style="color:#d6962c"
+                class="fa fa-eye"></i> View Image</a> -->
+
+    <div class="container">
+        <h2 style="font-family: 'Cormorant Unicase', serif;">Get Image By Location</h2>
+        <span id="locations">
+            {% for location in locations %}
+            <a class="btn btn-outline-info btn-sm" id="btn" style="font-size: 20px; color: inherit; font-family: 'Josefin Sans', sans-serif;"
+                href="{% url 'location' location.name %}">
+                <button type="button" class="btn btn-light">{{location.name}}</button></a>
+            {%endfor%}
+        </span>
+    </div>
+
+    {% for image in images %}
+
+    <div class="card-columns">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" data-toggle="modal" data-target="#{{image.id}}">
+            <div class="card">
+                <img src="{{ image.image.url }}" class="card-img" alt="..." height="270rem">
+                <div class="card-body">
+                    <p class="card-text">{{ image.name }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="modal fade" id="{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content modalcard">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="imageheader">{{ image.name }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="{{image.image.url}}" class="img-responsive" alt="Image">
+                    <p>Image description: {{ image.description  }}</p>
+                    <p>Image Category: {{ image.category }}</p>
+                    <p>Image Location: {{ image.location }}</p>
+                </div>
+                <div class="modal-footer">
+                    <input class="form-control imput-lg" type="text" value="{{image.image.url}}"
+                        id="{{ image.id }}.url">
+                    <button type="button" class="btn btn-success" onclick="copy('{{ image.id }}.url')">Copy</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    {% block scripts %}
+
+                    {% bootstrap_javascript %}
+                    <script>
+                        copy = (element) => {
+                            document.getElementById(element).select();
+                            document.execCommand("copy");
+                        }
+                    </script>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div> -->
+    {% endfor %}
 </div>
-
+<script>
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    })
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 {% endblock %}
