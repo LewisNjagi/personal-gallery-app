@@ -1,0 +1,52 @@
+{%extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="container">
+        {% if images %}
+        <h2>Found {{ images|length }} of searched term {{message}}</h2>
+        {% else %}
+        <h2> Found 0 articles for the search term {{message}}</h2>
+        {% endif %}
+  
+
+    {% if images %}
+    {% for image in images %}
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" data-toggle="modal" data-target="#{{image.id}}">
+        <div class="card" style="width: 35rem;">
+            <img src="{{ image.image.url }}" width="100%" height="100%" class="card-img" alt="...">
+            <div class="card-body">
+                <p class="card-text">{{ image.name }}</p>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="modal fade" id="{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content modalcard">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="imageheader">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="{{image.image.url}}" class="img-responsive" alt="Image">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic quo consequuntur animi
+                        dolore
+                        nam
+                        itaque quidem ullam rerum esse aliquid, cumque natus ab sunt, error minus pariatur.
+                        Tempora,
+                        ipsum minus?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+            </div>
+        </div>
+    </div> -->
+    {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}
