@@ -23,8 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '%0*pfv5t^=8gq+05eov5o2qir-o_hh-j23fix#-46^g^u)(@qj'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -78,17 +77,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'gallery.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'gallery',
-#         'USER': 'qyunky',
-#         'PASSWORD': 'Lewis860',
-#     }
-# }
 
 MODE=config("MODE", default="dev")
 SECRET_KEY = config('SECRET_KEY')
