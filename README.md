@@ -32,7 +32,7 @@ As a user of the website you will be able to:
 | Copy Image link |  | 
  
 ## Live Link
-https://wen-news-app.herokuapp.com/
+https://psgallery.herokuapp.com/
 ## Known Bugs
 No known Bugs
 ## Technologies Used 
